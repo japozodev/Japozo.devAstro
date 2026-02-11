@@ -1,7 +1,6 @@
 ---
-// IMPORTAR ESTILOS
 import "/public/Assets/css/safeMode.css";
-// IMPORTACIONES DE ICONOS
+
 import HtmlIcon from "../components/icons/HtmlIcon.astro";
 import CssIcon from "../components/icons/CssIcon.astro";
 import JsIcon from "../components/icons/JsIcon.astro";
@@ -11,6 +10,55 @@ import ElementorIcon from "../components/icons/ElementorIcon.astro";
 import BootstrapIcon from "../components/icons/BootstrapIcon.astro";
 import GitIcon from "../components/icons/GitIcon.astro";
 import GithubIcon from "../components/icons/GithubIcon.astro";
+
+const year = new Date().getFullYear();
+
+const projects = [
+  {
+    title: "IP Topografía",
+    desc: "Desarrollo de sitio web corporativo para empresa de topografía.",
+    statusText: "Online",
+    statusClass: "status-deployed",
+    url: "https://iptopografia.com",
+    external: true
+  },
+  {
+    title: "Allianz Partner",
+    desc: "Sitio web corporativo para partner de compañía internacional de seguros y activos financieros.",
+    statusText: "En Desarrollo",
+    statusClass: "status-dev",
+    url: "#",
+    external: false
+  },
+  {
+    title: "R2R Consulting",
+    desc: "Desarrollo web para consultoría especializada en servicios inmobiliarios.",
+    statusText: "Online",
+    statusClass: "status-deployed",
+    url: "https://r2r.es/",
+    external: true
+  }
+];
+
+const skills = [
+  { name: "HTML / CSS",      pct: "95%" },
+  { name: "JavaScript",      pct: "85%" },
+  { name: "UI / UX Design",  pct: "80%" },
+  { name: "Teamwork",        pct: "75%" },
+  { name: "Problem Solving", pct: "85%" },
+];
+
+const technologies = [
+  { Icon: HtmlIcon,       name: "HTML5",      innerFill: "#ffffff" },
+  { Icon: CssIcon,        name: "CSS3",       innerFill: "#ffffff" },
+  { Icon: JsIcon,         name: "JavaScript", innerFill: "#ffffff" },
+  { Icon: AstroIcon,      name: "Astro" },
+  { Icon: WordpressIcon,  name: "WordPress" },
+  { Icon: ElementorIcon,  name: "Elementor" },
+  { Icon: BootstrapIcon,  name: "Bootstrap" },
+  { Icon: GitIcon,        name: "Git" },
+  { Icon: GithubIcon,     name: "GitHub",     mobileOnly: true },
+];
 ---
 
 <!doctype html>
@@ -74,7 +122,7 @@ import GithubIcon from "../components/icons/GithubIcon.astro";
           <a href="#proyectos">Proyectos</a>
           <a href="#user-profile">Perfil</a>
           <a href="#contacto">Contacto</a>
-          <a href="index.html" class="switch-mode">&gt;_ TERMINAL_MODE</a>
+          <a href="/" class="switch-mode">&gt;_ TERMINAL_MODE</a>
         </div>
       </nav>
     </header>
@@ -90,50 +138,15 @@ import GithubIcon from "../components/icons/GithubIcon.astro";
 
       <h2>Tecnologías Principales</h2>
       <div class="tech-grid">
-        <div class="tech-item">
-          <HtmlIcon class="tech-icon" innerFill="#ffffff" />
-          <span>HTML5</span>
-        </div>
-
-        <div class="tech-item">
-          <CssIcon class="tech-icon" innerFill="#ffffff" />
-          <span>CSS3</span>
-        </div>
-
-        <div class="tech-item">
-          <JsIcon class="tech-icon" innerFill="#ffffff" />
-          <span>JavaScript</span>
-        </div>
-
-        <div class="tech-item">
-          <AstroIcon class="tech-icon" />
-          <span>Astro</span>
-        </div>
-
-        <div class="tech-item">
-          <WordpressIcon class="tech-icon" />
-          <span>WordPress</span>
-        </div>
-
-        <div class="tech-item">
-          <ElementorIcon class="tech-icon" />
-          <span>Elementor</span>
-        </div>
-
-        <div class="tech-item">
-          <BootstrapIcon class="tech-icon" />
-          <span>Bootstrap</span>
-        </div>
-
-        <div class="tech-item">
-          <GitIcon class="tech-icon" />
-          <span>Git</span>
-        </div>
-
-        <div class="tech-item mobile-only">
-          <GithubIcon class="tech-icon" />
-          <span>GitHub</span>
-        </div>
+        {technologies.map((tech) => (
+          <div class={`tech-item ${tech.mobileOnly ? "mobile-only" : ""}`}>
+            <tech.Icon 
+              class="tech-icon" 
+              innerFill={tech.innerFill} 
+            />
+            <span>{tech.name}</span>
+          </div>
+        ))}
       </div>
 
       <a href="#proyectos" class="btn">Ver Proyectos</a>
@@ -142,39 +155,18 @@ import GithubIcon from "../components/icons/GithubIcon.astro";
     <section id="proyectos">
       <h2>Proyectos Destacados</h2>
       <div class="grid">
-        <a
-          href="https://iptopografia.com"
-          class="card card-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h3>IP Topografía</h3>
-          <p>Desarrollo de sitio web corporativo para empresa de topografía.</p>
-          <span class="status-tag status-deployed">Online</span>
-        </a>
-
-        <a href="#" class="card card-link">
-          <h3>Allianz Partner</h3>
-          <p>
-            Sitio web corporativo para partner de compañía internacional de
-            seguros y activos financieros.
-          </p>
-          <span class="status-tag status-dev">En Desarrollo</span>
-        </a>
-
-        <a
-          href="https://r2r.es/"
-          class="card card-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h3>R2R Consulting</h3>
-          <p>
-            Desarrollo web para consultoría especializada en servicios
-            inmobiliarios.
-          </p>
-          <span class="status-tag status-deployed">Online</span>
-        </a>
+        {projects.map((project) => (
+          <a
+            href={project.url}
+            class="card card-link"
+            target={project.external ? "_blank" : "_self"}
+            rel={project.external ? "noopener noreferrer" : ""}
+          >
+            <h3>{project.title}</h3>
+            <p>{project.desc}</p>
+            <span class={`status-tag ${project.statusClass}`}>{project.statusText}</span>
+          </a>
+        ))}
       </div>
     </section>
 
@@ -218,56 +210,20 @@ import GithubIcon from "../components/icons/GithubIcon.astro";
 
           <div class="skills-box">
             <h3>Habilidades Técnicas</h3>
-
-            <div class="skill-row">
-              <div class="skill-info">
-                <span>HTML / CSS</span><span>95%</span>
-              </div>
-              <div class="progress-bg">
-                <div class="progress-fill progress-initial" data-width="95%">
+            {skills.map((skill) => (
+              <div class="skill-row">
+                <div class="skill-info">
+                  <span>{skill.name}</span><span>{skill.pct}</span>
+                </div>
+                <div class="progress-bg">
+                  <div 
+                    class="progress-fill progress-initial" 
+                    data-width={skill.pct}
+                  >
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div class="skill-row">
-              <div class="skill-info">
-                <span>JavaScript</span><span>85%</span>
-              </div>
-              <div class="progress-bg">
-                <div class="progress-fill progress-initial" data-width="85%">
-                </div>
-              </div>
-            </div>
-
-            <div class="skill-row">
-              <div class="skill-info">
-                <span>UI / UX Design</span><span>80%</span>
-              </div>
-              <div class="progress-bg">
-                <div class="progress-fill progress-initial" data-width="80%">
-                </div>
-              </div>
-            </div>
-
-            <div class="skill-row">
-              <div class="skill-info">
-                <span>Teamwork</span><span>75%</span>
-              </div>
-              <div class="progress-bg">
-                <div class="progress-fill progress-initial" data-width="75%">
-                </div>
-              </div>
-            </div>
-
-            <div class="skill-row">
-              <div class="skill-info">
-                <span>Problem Solving</span><span>85%</span>
-              </div>
-              <div class="progress-bg">
-                <div class="progress-fill progress-initial" data-width="85%">
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -307,7 +263,7 @@ import GithubIcon from "../components/icons/GithubIcon.astro";
     </section>
 
     <footer>
-      <p>&copy; <span id="year">20XX</span> J. A. Pozo</p>
+      <p>&copy; <span id="year">{year}</span> J. A. Pozo</p>
     </footer>
     <script is:inline src="/Assets/js/safeMode.js"></script>
   </body>
