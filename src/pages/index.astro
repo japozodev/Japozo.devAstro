@@ -1,9 +1,9 @@
 ---
-// 1. IMPORTAR COMPONENTES
+// --- IMPORTACIONES ---
 import AsciiArt from '../components/AsciiArt.astro';
-// 2. IMPORTAR ESTILOS
 import '/public/Assets/css/styles.css';
-// 3. IMPORTACIONES DE ICONOS
+
+// Iconos
 import HtmlIcon from '../components/icons/HtmlIcon.astro';
 import CssIcon from '../components/icons/CssIcon.astro';
 import JsIcon from '../components/icons/JsIcon.astro';
@@ -13,6 +13,65 @@ import ElementorIcon from '../components/icons/ElementorIcon.astro';
 import BootstrapIcon from '../components/icons/BootstrapIcon.astro';
 import GitIcon from '../components/icons/GitIcon.astro';
 import GithubIcon from '../components/icons/GithubIcon.astro';
+
+// --- LÓGICA / DATOS ---
+
+// 1. Año automático
+const year = new Date().getFullYear();
+
+// 2. Datos de Proyectos
+const projects = [
+  {
+    id: "ALPHA",
+    name: "IPTOPOGRAFIA",
+    desc: "Corporate website for land surveying",
+    status: "ONLINE",
+    statusCode: "200 OK",
+    url: "https://iptopografia.com",
+    active: true
+  },
+  {
+    id: "BETA",
+    name: "ALLIANZ PARTNER",
+    desc: "Global insurance and asset management",
+    status: "IN_DEV",
+    statusCode: "503",
+    url: "#",
+    active: false,
+    warning: true
+  },
+  {
+    id: "GAMMA",
+    name: "R2R CONSULTING",
+    desc: "End-to-end solutions for property services",
+    status: "ONLINE",
+    statusCode: "200 OK",
+    url: "https://r2r.es/",
+    active: true
+  }
+];
+
+// 3. Datos de Skills (Texto ASCII)
+const skills = [
+  { name: "HTML / CSS",      bar: "[||||||||||||||", blink: "|", end: "-] 95%" },
+  { name: "JavaScript",      bar: "[|||||||||||||",  blink: "|", end: "--] 85%" },
+  { name: "UI / UX Design",  bar: "[||||||||||||",   blink: "|", end: "---] 80%" },
+  { name: "Teamwork",        bar: "[|||||||||||",    blink: "|", end: "----] 75%" },
+  { name: "Problem Solving", bar: "[|||||||||||||",  blink: "|", end: "--] 85%" },
+];
+
+// 4. Datos de Tecnologías 
+const technologies = [
+  { Icon: HtmlIcon,       name: "HTML5" },
+  { Icon: CssIcon,        name: "CSS3" },
+  { Icon: JsIcon,         name: "JAVASCRIPT" },
+  { Icon: AstroIcon,      name: "ASTRO" },
+  { Icon: WordpressIcon,  name: "WORDPRESS" },
+  { Icon: ElementorIcon,  name: "ELEMENTOR" },
+  { Icon: BootstrapIcon,  name: "BOOTSTRAP" },
+  { Icon: GitIcon,        name: "GIT" },
+  { Icon: GithubIcon,     name: "GITHUB",     mobileOnly: true },
+];
 ---
 
 <!DOCTYPE html>
@@ -23,32 +82,24 @@ import GithubIcon from '../components/icons/GithubIcon.astro';
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#050505">
   <meta name="color-scheme" content="dark">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="msapplication-navbutton-color" content="#050505"> 
-  <meta name="description"
-    content="Portfolio de Pozo. Desarrollador Frontend especializado en crear experiencias web únicas. HTML5, CSS3, JS y Diseño UI/UX.">
+  
+  <meta name="description" content="Portfolio de Pozo. Desarrollador Frontend especializado en crear experiencias web únicas.">
   <meta name="author" content="J. A. Pozo">
   <link rel="canonical" href="https://japozo.dev/">
-
+  
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://japozo.dev/">
   <meta property="og:title" content="Pozo — Frontend Developer | Portfolio">
-  <meta property="og:description"
-    content="Desarrollador Frontend. Experiencias web disruptivas en modo Terminal y Visual.">
+  <meta property="og:description" content="Desarrollador Frontend. Experiencias web disruptivas en modo Terminal y Visual.">
   <meta property="og:image" content="https://japozo.dev/Assets/img/social-preview.jpg">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://japozo.dev/">
   <meta name="twitter:title" content="Pozo — Frontend Developer">
-  <meta name="twitter:description" content="Desarrollador Frontend. Echa un vistazo a mis proyectos.">
   <meta name="twitter:image" content="https://japozo.dev/Assets/img/social-preview.jpg">
 
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23050505'/><text x='50' y='70' font-size='55' text-anchor='middle' fill='%2333ff33' font-family='monospace' font-weight='bold'>P&gt;</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23050505'/><text x='50' y='70' font-size='55' text-anchor='middle' fill='%2333ff33' font-family='monospace' font-weight='bold'>P&gt;</text></svg>">
   <title>Pozo — Frontend Developer | Creative Web Interfaces</title>
- 
+  
   <script is:inline src="/Assets/js/script.js"></script>
 </head>
 
@@ -63,96 +114,53 @@ import GithubIcon from '../components/icons/GithubIcon.astro';
 
   <header>
     <nav>
-      <a href="#inicio" class="logo logo-link">&gt;<span
-          class="blink">_</span> SYSTEM.ROOT</a>
-
+      <a href="#inicio" class="logo logo-link">&gt;<span class="blink">_</span> SYSTEM.ROOT</a>
       <div class="mobile-toggle" id="mobile-menu-btn">[ :: MENU :: ]</div>
-
       <div class="nav-links" id="nav-links">
         <a href="#proyectos">[ PROJECTS ]</a>
         <a href="#user-profile">[ USER_PROFILE ]</a>
         <a href="#contacto">[ CONNECTION ]</a>
-        <a href="safeMode.html" class="safe-mode-btn">[ SAFE_MODE ]</a>
+        <a href="/safeMode" class="safe-mode-btn">[ SAFE_MODE ]</a>
       </div>
     </nav>
   </header>
 
   <section id="inicio">
     <p id="linea1" class="output-text"></p>
-
     <h1 id="main-title" class="main-title"></h1>
-
     <p id="linea2" class="secondary-text"></p>
+    
     <h2>./CORE_STACK</h2>
     <div class="tech-grid">
-      <div class="tech-item">
-        <HtmlIcon class="tech-icon" />
-        <span>HTML5</span>
-      </div>
-
-      <div class="tech-item">
-        <CssIcon class="tech-icon" />
-        <span>CSS3</span>
-      </div>
-
-      <div class="tech-item">
-       <JsIcon class="tech-icon" />
-        <span>JAVASCRIPT</span>
-      </div>
-
-      <div class="tech-item">
-        <AstroIcon class="tech-icon" />
-        <span>ASTRO</span>
-      </div>
-
-      <div class="tech-item">
-       <WordpressIcon class="tech-icon" />
-        <span>WORDPRESS</span>
-      </div>
-
-      <div class="tech-item">
-       <ElementorIcon class="tech-icon" />
-        <span>ELEMENTOR</span>
-      </div>
-      <div class="tech-item">
-        <BootstrapIcon class="tech-icon" />
-        <span>BOOTSTRAP</span>
-      </div>
-      <div class="tech-item">
-        <GitIcon class="tech-icon" />
-        <span>GIT</span>
-      </div>
-      <div class="tech-item mobile-only">
-        <GithubIcon class="tech-icon" />
-        <span>GITHUB</span>
-      </div>
+      {technologies.map((tech) => (
+        <div class={`tech-item ${tech.mobileOnly ? "mobile-only" : ""}`}>
+          <tech.Icon class="tech-icon" />
+          <span>{tech.name}</span>
+        </div>
+      ))}
     </div>
+    
     <a href="#proyectos" class="btn">EXEC Portfolio.exe</a>
   </section>
 
   <section id="proyectos">
     <h2>./Projects</h2>
     <div class="grid">
-
-      <a href="https://iptopografia.com" class="card" target="_blank" rel="noopener noreferrer">
-        <h3>[ PROJECT_ALPHA ]</h3>
-        <h4>[ IPTOPOGRAFIA ]</h4><br>
-        <p>Corporate website for land surveying<br>STATUS: 200 OK <span class="blink">ONLINE</span></p>
-      </a>
-
-      <a href="#" class="card">
-        <h3>[ PROJECT_BETA ]</h3>
-        <h4>[ ALLIANZ PARTNER ]</h4><br>
-        <p>Global insurance and asset management<br>STATUS: 503 <br><span class="blink status-warning">SERVICE
-            UNAVAILABLE IN_DEV</span></p>
-
-      </a>
-
-      <a href="https://r2r.es/" class="card" target="_blank" rel="noopener noreferrer">
-        <h3>[ PROJECT_GAMMA ]</h3>
-        <h4>[ R2R CONSULTING ]</h4><br>
-        <p>End-to-end solutions for property services<br>STATUS: 200 OK <span class="blink">ONLINE</span></p>
-      </a>
+      
+      {projects.map((project) => (
+        <a href={project.url} class="card" target={project.active ? "_blank" : "_self"} rel={project.active ? "noopener noreferrer" : ""}>
+          <h3>[ PROJECT_{project.id} ]</h3>
+          <h4>[ {project.name} ]</h4><br>
+          <p>
+            {project.desc}<br>
+            STATUS: {project.statusCode} 
+            {project.warning 
+              ? <br><span class="blink status-warning">SERVICE UNAVAILABLE {project.status}</span>
+              : <span class="blink"> {project.status}</span>
+            }
+          </p>
+        </a>
+      ))}
 
     </div>
     <a href="#contacto" class="btn">INIT CONTACT PROTOCOL</a>
@@ -162,7 +170,6 @@ import GithubIcon from '../components/icons/GithubIcon.astro';
     <h2>./User_Profile</h2>
 
     <div class="profile-container">
-
       <div class="profile-sidebar">
         <AsciiArt />
         <div class="status-badge">
@@ -171,7 +178,6 @@ import GithubIcon from '../components/icons/GithubIcon.astro';
       </div>
 
       <div class="profile-info">
-
         <div class="bio-box">
           <h3>&gt;&gt; IDENTITY_LOG</h3>
           <p>
@@ -190,33 +196,14 @@ import GithubIcon from '../components/icons/GithubIcon.astro';
         <div class="skills-box">
           <h3>&gt;&gt; SKILL_MATRIX</h3>
 
-          <div class="skill-row">
-            <span class="skill-name">HTML / CSS</span>
-            <span class="skill-bar">[||||||||||||||<span class="blink-magenta">|</span>-] 95%</span>
-          </div>
-
-          <div class="skill-row">
-            <span class="skill-name">JavaScript</span>
-            <span class="skill-bar">[|||||||||||||<span class="blink-magenta">|</span>--] 85%</span>
-          </div>
-
-          <div class="skill-row">
-            <span class="skill-name">UI / UX Design</span>
-            <span class="skill-bar">[||||||||||||<span class="blink-magenta">|</span>---] 80%</span>
-          </div>
-
-          <div class="skill-row">
-            <span class="skill-name"> Teamwork</span>
-            <span class="skill-bar">[|||||||||||<span class="blink-magenta">|</span>----] 75%</span>
-          </div>
-
-          <div class="skill-row">
-            <span class="skill-name">Problem Solving</span>
-            <span class="skill-bar">[|||||||||||||<span class="blink-magenta">|</span>--] 85%</span>
-          </div>
+          {skills.map((skill) => (
+            <div class="skill-row">
+              <span class="skill-name">{skill.name}</span>
+              <span class="skill-bar">{skill.bar}<span class="blink-magenta">{skill.blink}</span>{skill.end}</span>
+            </div>
+          ))}
 
         </div>
-
       </div>
     </div>
   </section>
@@ -256,8 +243,7 @@ import GithubIcon from '../components/icons/GithubIcon.astro';
   </section>
 
   <footer>
-    <p>STATUS: ONLINE | SYSTEM V.0.9 | SESSION_ID: $USERX0042-<span id="year">20XX</span>-XF ©</p>
+    <p>STATUS: ONLINE | SYSTEM V.0.9 | SESSION_ID: $USERX0042-<span id="year">{year}</span>-XF ©</p>
   </footer>
 </body>
-
 </html>
