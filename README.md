@@ -33,32 +33,36 @@ El código ha sido refactorizado siguiendo principios **DRY (Don't Repeat Yourse
 | Tecnología | Implementación |
 |------------|----------------|
 | **[Astro](https://astro.build/)** | Core Framework. SSG (Static Site Generation). |
+| **SEO Automation** | Generación automática de `sitemap.xml` y configuración de `robots.txt` para indexación óptima. |
 | **Astro Layouts** | Gestión centralizada del SEO, `<head>` y scripts globales mediante `BaseLayout.astro`. |
 | **Global Config** | Archivo `src/config.js` como **Single Source of Truth** para datos del sitio, email y redes sociales. |
-| **UI Abstraction** | Uso de componentes específicos (`TerminalCard`, `VisualCard`) para encapsular la lógica visual de los proyectos y limpiar las páginas. |
+| **UI Abstraction** | Uso de componentes específicos (`TerminalCard`, `VisualCard`) para encapsular la lógica visual de los proyectos. |
 | **Smart Components** | Iconos SVG (`.astro`) que adaptan su color y relleno automáticamente según el contexto. |
 
 ---
 
 ## 📂 Estructura del Proyecto
 
-Organización actual tras la refactorización v1.2:
+Organización actual tras la refactorización:
 
 ```text
 /
-├── public/              # Assets estáticos (imágenes, CSS global)
+├── public/              # Assets estáticos
+│   ├── Assets/          # CSS, JS, Imágenes
+│   └── robots.txt       # Reglas de indexación para buscadores
 ├── src/
-│   ├── config.js        #  Configuración Global (Datos, RRSS)
+│   ├── config.js        # Configuración Global (Datos, RRSS)
 │   ├── components/      # Piezas reutilizables
 │   │   ├── AsciiArt.astro     # Arte ASCII encapsulado
 │   │   ├── TerminalCard.astro # Tarjeta de proyecto (Estilo Matrix)
 │   │   ├── VisualCard.astro   # Tarjeta de proyecto (Estilo Clean)
 │   │   └── icons/             # Colección de SVGs dinámicos
 │   │
-│   ├── layouts/         #  PLANTILLAS MAESTRAS
+│   ├── layouts/         # PLANTILLAS MAESTRAS
 │   │   └── BaseLayout.astro   # Controla SEO, Metas y Estructura base
 │   │
 │   └── pages/           # Vistas (Clean Code)
 │       ├── index.astro        # Terminal Mode (Lógica pura + Componentes)
 │       └── safeMode.astro     # Visual Mode (Lógica pura + Componentes)
-└── astro.config.mjs     # Configuración del compilador
+└── astro.config.mjs     # Configuración del compilador (Sitemap integrations)
+
