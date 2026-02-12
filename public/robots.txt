@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://japozo.dev/sitemap-index.xml
