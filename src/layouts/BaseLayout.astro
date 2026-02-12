@@ -1,5 +1,6 @@
 ---
-// src/layouts/BaseLayout.astro
+import { SITE_DATA } from '../config';
+
 interface Props {
   title: string;
   description: string;
@@ -12,9 +13,9 @@ interface Props {
 }
 
 const { 
-  title, 
-  description, 
-  author, 
+  title = SITE_DATA.title, 
+  description = SITE_DATA.description, 
+  author = SITE_DATA.author, 
   themeColor, 
   cssFile, 
   jsFile, 
