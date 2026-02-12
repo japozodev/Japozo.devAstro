@@ -1,0 +1,22 @@
+---
+const { project } = Astro.props;
+---
+
+<a 
+  href={project.url} 
+  class="card" 
+  target={project.active ? "_blank" : "_self"} 
+  rel={project.active ? "noopener noreferrer" : ""}
+>
+  <h3>[ PROJECT_{project.id} ]</h3>
+  <h4>[ {project.name} ]</h4><br>
+  
+  <p>
+    {project.desc}<br>
+    STATUS: {project.statusCode} 
+    {project.warning 
+      ? <br><span class="blink status-warning">SERVICE UNAVAILABLE {project.status}</span>
+      : <span class="blink"> {project.status}</span>
+    }
+  </p>
+</a>
