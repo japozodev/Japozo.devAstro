@@ -1,0 +1,17 @@
+---
+const { project } = Astro.props;
+---
+
+<a
+  href={project.url}
+  class="card card-link"
+  target={project.external ? "_blank" : "_self"}
+  rel={project.external ? "noopener noreferrer" : ""}
+>
+  <h3>{project.title}</h3>
+  <p>{project.desc}</p>
+  
+  <span class={`status-tag ${project.statusClass}`}>
+    {project.statusText}
+  </span>
+</a>
