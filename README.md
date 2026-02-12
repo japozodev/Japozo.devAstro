@@ -28,33 +28,37 @@ Interfaz gráfica moderna para facilitar la legibilidad.
 
 ## 🛠️ Stack y Arquitectura
 
-El código ha sido refactorizado siguiendo principios **DRY (Don't Repeat Yourself)**.
+El código ha sido refactorizado siguiendo principios **DRY (Don't Repeat Yourself)** y **Clean Code**.
 
 | Tecnología | Implementación |
 |------------|----------------|
 | **[Astro](https://astro.build/)** | Core Framework. SSG (Static Site Generation). |
-| **Astro Layouts** | **Nuevo:** Gestión centralizada del SEO, `<head>` y scripts globales mediante `BaseLayout.astro`. |
-| **Data-Driven UI** | Separación lógica/vista. Los proyectos y skills se inyectan mediante Arrays de objetos, manteniendo el HTML limpio. |
-| **Smart Components** | Iconos SVG (`.astro`) que adaptan su color y relleno automáticamente según el contexto (Terminal vs Visual). |
+| **Astro Layouts** | Gestión centralizada del SEO, `<head>` y scripts globales mediante `BaseLayout.astro`. |
+| **Global Config** | Archivo `src/config.js` como **Single Source of Truth** para datos del sitio, email y redes sociales. |
+| **UI Abstraction** | Uso de componentes específicos (`TerminalCard`, `VisualCard`) para encapsular la lógica visual de los proyectos y limpiar las páginas. |
+| **Smart Components** | Iconos SVG (`.astro`) que adaptan su color y relleno automáticamente según el contexto. |
 
 ---
 
 ## 📂 Estructura del Proyecto
 
-Organización actual tras la refactorización v1.1:
+Organización actual tras la refactorización v1.2:
 
 ```text
 /
 ├── public/              # Assets estáticos (imágenes, CSS global)
 ├── src/
-│   ├── components/      # Piezas reutilizables (Lego blocks)
-│   │   ├── AsciiArt.astro   # Arte ASCII encapsulado
-│   │   └── icons/           # Colección de SVGs dinámicos
+│   ├── config.js        #  Configuración Global (Datos, RRSS)
+│   ├── components/      # Piezas reutilizables
+│   │   ├── AsciiArt.astro     # Arte ASCII encapsulado
+│   │   ├── TerminalCard.astro # Tarjeta de proyecto (Estilo Matrix)
+│   │   ├── VisualCard.astro   # Tarjeta de proyecto (Estilo Clean)
+│   │   └── icons/             # Colección de SVGs dinámicos
 │   │
-│   ├── layouts/         # ✨ PLANTILLAS MAESTRAS
-│   │   └── BaseLayout.astro # Controla SEO, Metas y Estructura base
+│   ├── layouts/         #  PLANTILLAS MAESTRAS
+│   │   └── BaseLayout.astro   # Controla SEO, Metas y Estructura base
 │   │
 │   └── pages/           # Vistas (Clean Code)
-│       ├── index.astro      # Terminal Mode (Inyecta datos oscuros)
-│       └── safeMode.astro   # Visual Mode (Inyecta datos claros)
+│       ├── index.astro        # Terminal Mode (Lógica pura + Componentes)
+│       └── safeMode.astro     # Visual Mode (Lógica pura + Componentes)
 └── astro.config.mjs     # Configuración del compilador
