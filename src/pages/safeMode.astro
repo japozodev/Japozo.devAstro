@@ -1,5 +1,5 @@
 ---
-import "/public/Assets/css/safeMode.css";
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 import HtmlIcon from "../components/icons/HtmlIcon.astro";
 import CssIcon from "../components/icons/CssIcon.astro";
@@ -11,6 +11,7 @@ import BootstrapIcon from "../components/icons/BootstrapIcon.astro";
 import GitIcon from "../components/icons/GitIcon.astro";
 import GithubIcon from "../components/icons/GithubIcon.astro";
 
+// --- LÓGICA / DATOS ---
 const year = new Date().getFullYear();
 
 const projects = [
@@ -59,212 +60,175 @@ const technologies = [
   { Icon: GitIcon,        name: "GIT" },
   { Icon: GithubIcon,     name: "GITHUB",     mobileOnly: true },
 ];
+
+// Favicon SVG String (Safe Mode Blue)
+const faviconSafe = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text x='50' y='70' font-size='55' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>P</text></svg>";
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ffffff" />
+<BaseLayout
+  title="Pozo — Frontend Developer | Portfolio"
+  description="Portfolio de Pozo. Desarrollador Frontend especializado en crear experiencias web únicas. HTML5, CSS3, JS y Diseño UI/UX."
+  author="J. A. Pozo"
+  themeColor="#ffffff"
+  cssFile="/Assets/css/safeMode.css"
+  jsFile="/Assets/js/safeMode.js"
+  favicon={faviconSafe}
+>
+  <header>
+    <nav>
+      <a href="#inicio" class="logo">japozo<span>.dev</span></a>
 
-    <meta
-      name="description"
-      content="Portfolio de Pozo. Desarrollador Frontend especializado en crear experiencias web únicas. HTML5, CSS3, JS y Diseño UI/UX."
-    />
-    <meta name="author" content="J. A. Pozo" />
-    <link rel="canonical" href="https://japozo.dev/" />
+      <button class="mobile-toggle" aria-label="Abrir menú">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
 
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://japozo.dev/" />
-    <meta property="og:title" content="Pozo — Frontend Developer | Portfolio" />
-    <meta
-      property="og:description"
-      content="Desarrollador Frontend. Experiencias web disruptivas en modo Terminal y Visual."
-    />
-    <meta
-      property="og:image"
-      content="https://japozo.dev/Assets/img/social-preview.jpg"
-    />
+      <div class="nav-links">
+        <a href="#proyectos">Proyectos</a>
+        <a href="#user-profile">Perfil</a>
+        <a href="#contacto">Contacto</a>
+        <a href="/" class="switch-mode">&gt;_ TERMINAL_MODE</a>
+      </div>
+    </nav>
+  </header>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://japozo.dev/" />
-    <meta name="twitter:title" content="Pozo — Frontend Developer" />
-    <meta
-      name="twitter:description"
-      content="Desarrollador Frontend. Echa un vistazo a mis proyectos."
-    />
-    <meta
-      name="twitter:image"
-      content="https://japozo.dev/Assets/img/social-preview.jpg"
-    />
+  <section id="inicio">
+    <div class="section-intro">Frontend Developer</div>
+    <h1>Hola, soy <span>Pozo</span></h1>
+    <p class="subtitle">
+      Desarrollo experiencias web que combinan innovación, funcionalidad y
+      buen diseño.<br />
+      Traduzco ideas en código claro, mantenible y orientado a resultados.
+    </p>
 
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text x='50' y='70' font-size='55' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>P</text></svg>"
-    />
-    <title>Pozo — Frontend Developer | Portfolio</title>
-  </head>
-
-  <body>
-    <header>
-      <nav>
-        <a href="#inicio" class="logo">japozo<span>.dev</span></a>
-
-        <button class="mobile-toggle" aria-label="Abrir menú">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
-
-        <div class="nav-links">
-          <a href="#proyectos">Proyectos</a>
-          <a href="#user-profile">Perfil</a>
-          <a href="#contacto">Contacto</a>
-          <a href="/" class="switch-mode">&gt;_ TERMINAL_MODE</a>
+    <h2>Tecnologías Principales</h2>
+    <div class="tech-grid">
+      {technologies.map((tech) => (
+        <div class={`tech-item ${tech.mobileOnly ? "mobile-only" : ""}`}>
+          <tech.Icon 
+            class="tech-icon" 
+            innerFill={tech.innerFill} 
+          />
+          <span>{tech.name}</span>
         </div>
-      </nav>
-    </header>
+      ))}
+    </div>
 
-    <section id="inicio">
-      <div class="section-intro">Frontend Developer</div>
-      <h1>Hola, soy <span>Pozo</span></h1>
-      <p class="subtitle">
-        Desarrollo experiencias web que combinan innovación, funcionalidad y
-        buen diseño.<br />
-        Traduzco ideas en código claro, mantenible y orientado a resultados.
-      </p>
+    <a href="#proyectos" class="btn">Ver Proyectos</a>
+  </section>
 
-      <h2>Tecnologías Principales</h2>
-      <div class="tech-grid">
-        {technologies.map((tech) => (
-          <div class={`tech-item ${tech.mobileOnly ? "mobile-only" : ""}`}>
-            <tech.Icon 
-              class="tech-icon" 
-              innerFill={tech.innerFill} 
-            />
-            <span>{tech.name}</span>
-          </div>
-        ))}
-      </div>
+  <section id="proyectos">
+    <h2>Proyectos Destacados</h2>
+    <div class="grid">
+      {projects.map((project) => (
+        <a
+          href={project.url}
+          class="card card-link"
+          target={project.external ? "_blank" : "_self"}
+          rel={project.external ? "noopener noreferrer" : ""}
+        >
+          <h3>{project.title}</h3>
+          <p>{project.desc}</p>
+          <span class={`status-tag ${project.statusClass}`}>{project.statusText}</span>
+        </a>
+      ))}
+    </div>
+  </section>
 
-      <a href="#proyectos" class="btn">Ver Proyectos</a>
-    </section>
+  <section id="user-profile">
+    <h2>Sobre Mí</h2>
 
-    <section id="proyectos">
-      <h2>Proyectos Destacados</h2>
-      <div class="grid">
-        {projects.map((project) => (
-          <a
-            href={project.url}
-            class="card card-link"
-            target={project.external ? "_blank" : "_self"}
-            rel={project.external ? "noopener noreferrer" : ""}
-          >
-            <h3>{project.title}</h3>
-            <p>{project.desc}</p>
-            <span class={`status-tag ${project.statusClass}`}>{project.statusText}</span>
-          </a>
-        ))}
-      </div>
-    </section>
+    <div class="profile-container">
+      <div class="profile-sidebar">
+        <div class="profile-ring-wrapper">
+          <img
+            src="/Assets/img/profile.jpg"
+            alt="Foto de perfil"
+            class="profile-avatar"
+          />
 
-    <section id="user-profile">
-      <h2>Sobre Mí</h2>
-
-      <div class="profile-container">
-        <div class="profile-sidebar">
-          <div class="profile-ring-wrapper">
-            <img
-              src="/Assets/img/profile.jpg"
-              alt="Foto de perfil"
-              class="profile-avatar"
-            />
-
-            <svg class="ring-svg" viewBox="0 0 216 216">
-              <circle class="ring-bg" cx="108" cy="108" r="104"></circle>
-              <circle class="ring-anim" cx="108" cy="108" r="104"></circle>
-            </svg>
-          </div>
-
-          <div style="margin-top: 1rem;">
-            <p><span class="label">Ubicación:</span> Gijón, España</p>
-            <p><span class="label">Rol:</span> Web Developer</p>
-            <p><span class="label">Nivel:</span> Junior</p>
-          </div>
+          <svg class="ring-svg" viewBox="0 0 216 216">
+            <circle class="ring-bg" cx="108" cy="108" r="104"></circle>
+            <circle class="ring-anim" cx="108" cy="108" r="104"></circle>
+          </svg>
         </div>
 
-        <div class="profile-info">
-          <div class="bio-box">
-            <h3>Biografía Profesional</h3>
-            <p class="bio-text">
-              Apasionado por la tecnología desde niño, he pasado más de 20 años
-              trabajando con hardware. Tras ese recorrido decidí dar un giro
-              profesional para centrarme en lo que realmente me motiva: el
-              desarrollo web y de software. Hoy diseño y construyo soluciones
-              digitales con identidad propia, cuidando tanto la eficiencia del
-              código como la experiencia final.
-            </p>
-          </div><br />
+        <div style="margin-top: 1rem;">
+          <p><span class="label">Ubicación:</span> Gijón, España</p>
+          <p><span class="label">Rol:</span> Web Developer</p>
+          <p><span class="label">Nivel:</span> Junior</p>
+        </div>
+      </div>
 
-          <div class="skills-box">
-            <h3>Habilidades Técnicas</h3>
-            {skills.map((skill) => (
-              <div class="skill-row">
-                <div class="skill-info">
-                  <span>{skill.name}</span><span>{skill.pct}</span>
-                </div>
-                <div class="progress-bg">
-                  <div 
-                    class="progress-fill progress-initial" 
-                    data-width={skill.pct}
-                  >
-                  </div>
+      <div class="profile-info">
+        <div class="bio-box">
+          <h3>Biografía Profesional</h3>
+          <p class="bio-text">
+            Apasionado por la tecnología desde niño, he pasado más de 20 años
+            trabajando con hardware. Tras ese recorrido decidí dar un giro
+            profesional para centrarme en lo que realmente me motiva: el
+            desarrollo web y de software. Hoy diseño y construyo soluciones
+            digitales con identidad propia, cuidando tanto la eficiencia del
+            código como la experiencia final.
+          </p>
+        </div><br />
+
+        <div class="skills-box">
+          <h3>Habilidades Técnicas</h3>
+          {skills.map((skill) => (
+            <div class="skill-row">
+              <div class="skill-info">
+                <span>{skill.name}</span><span>{skill.pct}</span>
+              </div>
+              <div class="progress-bg">
+                <div 
+                  class="progress-fill progress-initial" 
+                  data-width={skill.pct}
+                >
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p class="contact-intro"></p>
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p class="contact-intro"></p>
 
-      <div class="network-panel">
-        <div class="data-row">
-          <span class="label">Email:</span>
-          <a href="mailto:contact@japozo.dev" class="value-link"
-            >contact@japozo.dev</a
+    <div class="network-panel">
+      <div class="data-row">
+        <span class="label">Email:</span>
+        <a href="mailto:contact@japozo.dev" class="value-link"
+          >contact@japozo.dev</a
+        >
+      </div>
+      <div class="data-row">
+        <span class="label">Redes Sociales:</span>
+        <div class="social-links">
+          <a href="https://github.com/japozodev" target="_blank">GitHub</a>
+          <a
+            href="https://www.linkedin.com/in/joseantoniopozogonzalez/"
+            target="_blank">LinkedIn</a
           >
         </div>
-        <div class="data-row">
-          <span class="label">Redes Sociales:</span>
-          <div class="social-links">
-            <a href="https://github.com/japozodev" target="_blank">GitHub</a>
-            <a
-              href="https://www.linkedin.com/in/joseantoniopozogonzalez/"
-              target="_blank">LinkedIn</a
-            >
-          </div>
-        </div>
       </div>
+    </div>
 
-      <div class="contact-section">
-        <button
-          onclick="navigator.clipboard.writeText('contact@japozo.dev'); alert('Email copiado');"
-          class="btn copy-email-btn"
-        >
-          Copiar Email al Portapapeles
-        </button>
-      </div>
-    </section>
+    <div class="contact-section">
+      <button
+        onclick="navigator.clipboard.writeText('contact@japozo.dev'); alert('Email copiado');"
+        class="btn copy-email-btn"
+      >
+        Copiar Email al Portapapeles
+      </button>
+    </div>
+  </section>
 
-    <footer>
-      <p>&copy; <span id="year">{year}</span> J. A. Pozo</p>
-    </footer>
-    <script is:inline src="/Assets/js/safeMode.js"></script>
-  </body>
-</html>
+  <footer>
+    <p>&copy; <span id="year">{year}</span> J. A. Pozo</p>
+  </footer>
+</BaseLayout>
