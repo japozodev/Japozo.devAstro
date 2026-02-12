@@ -1,5 +1,6 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE_DATA, SOCIAL_LINKS } from "../config";
 
 import HtmlIcon from "../components/icons/HtmlIcon.astro";
 import CssIcon from "../components/icons/CssIcon.astro";
@@ -21,7 +22,7 @@ const projects = [
     statusText: "Online",
     statusClass: "status-deployed",
     url: "https://iptopografia.com",
-    external: true
+    external: true,
   },
   {
     title: "Allianz Partner",
@@ -29,7 +30,7 @@ const projects = [
     statusText: "En Desarrollo",
     statusClass: "status-dev",
     url: "#",
-    external: false
+    external: false,
   },
   {
     title: "R2R Consulting",
@@ -37,32 +38,33 @@ const projects = [
     statusText: "Online",
     statusClass: "status-deployed",
     url: "https://r2r.es/",
-    external: true
-  }
+    external: true,
+  },
 ];
 
 const skills = [
-  { name: "HTML / CSS",      pct: "95%" },
-  { name: "JavaScript",      pct: "85%" },
-  { name: "UI / UX Design",  pct: "80%" },
-  { name: "Teamwork",        pct: "75%" },
+  { name: "HTML / CSS", pct: "95%" },
+  { name: "JavaScript", pct: "85%" },
+  { name: "UI / UX Design", pct: "80%" },
+  { name: "Teamwork", pct: "75%" },
   { name: "Problem Solving", pct: "85%" },
 ];
 
 const technologies = [
-  { Icon: HtmlIcon,       name: "HTML5",      innerFill: "#ffffff" },
-  { Icon: CssIcon,        name: "CSS3",       innerFill: "#ffffff" },
-  { Icon: JsIcon,         name: "JAVASCRIPT", innerFill: "#ffffff" },
-  { Icon: AstroIcon,      name: "ASTRO" },
-  { Icon: WordpressIcon,  name: "WORDPRESS" },
-  { Icon: ElementorIcon,  name: "ELEMENTOR" },
-  { Icon: BootstrapIcon,  name: "BOOTSTRAP" },
-  { Icon: GitIcon,        name: "GIT" },
-  { Icon: GithubIcon,     name: "GITHUB",     mobileOnly: true },
+  { Icon: HtmlIcon, name: "HTML5", innerFill: "#ffffff" },
+  { Icon: CssIcon, name: "CSS3", innerFill: "#ffffff" },
+  { Icon: JsIcon, name: "JAVASCRIPT", innerFill: "#ffffff" },
+  { Icon: AstroIcon, name: "ASTRO" },
+  { Icon: WordpressIcon, name: "WORDPRESS" },
+  { Icon: ElementorIcon, name: "ELEMENTOR" },
+  { Icon: BootstrapIcon, name: "BOOTSTRAP" },
+  { Icon: GitIcon, name: "GIT" },
+  { Icon: GithubIcon, name: "GITHUB", mobileOnly: true },
 ];
 
 // Favicon SVG String (Safe Mode Blue)
-const faviconSafe = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text x='50' y='70' font-size='55' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>P</text></svg>";
+const faviconSafe =
+  "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text x='50' y='70' font-size='55' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>P</text></svg>";
 ---
 
 <BaseLayout
@@ -97,22 +99,21 @@ const faviconSafe = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' 
     <div class="section-intro">Frontend Developer</div>
     <h1>Hola, soy <span>Pozo</span></h1>
     <p class="subtitle">
-      Desarrollo experiencias web que combinan innovación, funcionalidad y
-      buen diseño.<br />
+      Desarrollo experiencias web que combinan innovación, funcionalidad y buen
+      diseño.<br />
       Traduzco ideas en código claro, mantenible y orientado a resultados.
     </p>
 
     <h2>Tecnologías Principales</h2>
     <div class="tech-grid">
-      {technologies.map((tech) => (
-        <div class={`tech-item ${tech.mobileOnly ? "mobile-only" : ""}`}>
-          <tech.Icon 
-            class="tech-icon" 
-            innerFill={tech.innerFill} 
-          />
-          <span>{tech.name}</span>
-        </div>
-      ))}
+      {
+        technologies.map((tech) => (
+          <div class={`tech-item ${tech.mobileOnly ? "mobile-only" : ""}`}>
+            <tech.Icon class="tech-icon" innerFill={tech.innerFill} />
+            <span>{tech.name}</span>
+          </div>
+        ))
+      }
     </div>
 
     <a href="#proyectos" class="btn">Ver Proyectos</a>
@@ -121,18 +122,22 @@ const faviconSafe = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' 
   <section id="proyectos">
     <h2>Proyectos Destacados</h2>
     <div class="grid">
-      {projects.map((project) => (
-        <a
-          href={project.url}
-          class="card card-link"
-          target={project.external ? "_blank" : "_self"}
-          rel={project.external ? "noopener noreferrer" : ""}
-        >
-          <h3>{project.title}</h3>
-          <p>{project.desc}</p>
-          <span class={`status-tag ${project.statusClass}`}>{project.statusText}</span>
-        </a>
-      ))}
+      {
+        projects.map((project) => (
+          <a
+            href={project.url}
+            class="card card-link"
+            target={project.external ? "_blank" : "_self"}
+            rel={project.external ? "noopener noreferrer" : ""}
+          >
+            <h3>{project.title}</h3>
+            <p>{project.desc}</p>
+            <span class={`status-tag ${project.statusClass}`}>
+              {project.statusText}
+            </span>
+          </a>
+        ))
+      }
     </div>
   </section>
 
@@ -176,20 +181,24 @@ const faviconSafe = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' 
 
         <div class="skills-box">
           <h3>Habilidades Técnicas</h3>
-          {skills.map((skill) => (
-            <div class="skill-row">
-              <div class="skill-info">
-                <span>{skill.name}</span><span>{skill.pct}</span>
-              </div>
-              <div class="progress-bg">
-                <div 
-                  class="progress-fill progress-initial" 
-                  data-width={skill.pct}
-                >
+          {
+            skills.map((skill) => (
+              <div class="skill-row">
+                <div class="skill-info">
+                  <>
+                    <span>{skill.name}</span>
+                    <span>{skill.pct}</span>
+                  </>
+                </div>
+                <div class="progress-bg">
+                  <div
+                    class="progress-fill progress-initial"
+                    data-width={skill.pct}
+                  ></div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </div>
     </div>
@@ -202,25 +211,22 @@ const faviconSafe = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' 
     <div class="network-panel">
       <div class="data-row">
         <span class="label">Email:</span>
-        <a href="mailto:contact@japozo.dev" class="value-link"
-          >contact@japozo.dev</a
+        <a href={`mailto:${SITE_DATA.email}`} class="value-link"
+          >{SITE_DATA.email}</a
         >
       </div>
       <div class="data-row">
         <span class="label">Redes Sociales:</span>
         <div class="social-links">
-          <a href="https://github.com/japozodev" target="_blank">GitHub</a>
-          <a
-            href="https://www.linkedin.com/in/joseantoniopozogonzalez/"
-            target="_blank">LinkedIn</a
-          >
+          <a href={SOCIAL_LINKS.github} target="_blank">GitHub</a>
+            <a href={SOCIAL_LINKS.linkedin} target="_blank">LinkedIn</a>
         </div>
       </div>
     </div>
 
     <div class="contact-section">
       <button
-        onclick="navigator.clipboard.writeText('contact@japozo.dev'); alert('Email copiado');"
+        onclick={`navigator.clipboard.writeText('${SITE_DATA.email}'); alert('Email copiado');`}
         class="btn copy-email-btn"
       >
         Copiar Email al Portapapeles

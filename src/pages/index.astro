@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AsciiArt from '../components/AsciiArt.astro';
+import { SITE_DATA, SOCIAL_LINKS } from '../config';
 
 // Iconos
 import HtmlIcon from '../components/icons/HtmlIcon.astro';
@@ -196,7 +197,7 @@ const faviconTerminal = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/s
       </div>
       <div class="data-row">
         <span class="label">ADDRESS:</span>
-        <a href="mailto:contact@japozo.dev" class="value-link">contact@japozo.dev</a>
+        <a href={`mailto:${SITE_DATA.email}`} class="value-link">{SITE_DATA.email}</a>
       </div>
       <div class="data-row">
         <span class="label">LOCATION:</span>
@@ -205,15 +206,19 @@ const faviconTerminal = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/s
       <div class="data-row">
         <span class="label">SOCIAL_NET:</span>
         <div class="social-links">
-          <a href="https://github.com/japozodev" target="_blank">[ GITHUB ]</a>
-          <a href="https://www.linkedin.com/in/joseantoniopozogonzalez/" target="_blank">[ LINKEDIN ]</a>
+          <a href={SOCIAL_LINKS.github} target="_blank">[ GITHUB ]</a>
+          <a href={SOCIAL_LINKS.linkedin} target="_blank">[ LINKEDIN ]</a>
         </div>
       </div>
     </div>
 
     <div style="margin-top: 2rem;">
       <p>&gt;_ Execute copy command:</p>
-      <button id="copy-btn" class="btn">
+      <button 
+        id="copy-btn" 
+        class="btn"
+        onclick={`navigator.clipboard.writeText('${SITE_DATA.email}'); alert('Dirección copiada al portapapeles');`}
+      >
         $ cp email_address /clipboard
       </button>
     </div>
