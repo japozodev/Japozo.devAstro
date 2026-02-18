@@ -107,6 +107,26 @@ nav {
   color: #000 !important;
 }
 
+.lang-toggle {
+  background: transparent;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+  border-radius: 6px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1;
+}
+
+.lang-toggle:hover {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+
 /* =========================================
        3. MENÚ MÓVIL
 ========================================= */
@@ -191,7 +211,7 @@ h2::after {
   text-decoration: none;
   font-weight: 600;
   transition: background-color 0.2s;
-  border:  1px solid var(--primary);
+  border: 1px solid var(--primary);
   cursor: pointer;
 }
 
@@ -571,6 +591,13 @@ footer {
     border-radius: 6px;
   }
 
+  .nav-links .lang-toggle {
+    width: auto !important;
+    height: auto !important;
+    margin-top: 1rem !important;
+    border-bottom: none !important;
+  }
+
   .mobile-only {
     display: flex !important;
     flex-direction: column;
@@ -632,4 +659,3 @@ footer {
     margin: 0 10px;
   }
 }
-

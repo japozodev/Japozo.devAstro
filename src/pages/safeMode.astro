@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { SITE_DATA, SOCIAL_LINKS } from "../config";
-import VisualCard from '../components/VisualCard.astro';
+import VisualCard from "../components/VisualCard.astro";
 
 import HtmlIcon from "../components/icons/HtmlIcon.astro";
 import CssIcon from "../components/icons/CssIcon.astro";
@@ -24,6 +24,8 @@ const projects = [
     statusClass: "status-deployed",
     url: "https://iptopografia.com",
     external: true,
+    i18nDesc: "project-iptopo-desc",
+    i18nStatus: "status-online",
   },
   {
     title: "Allianz Partner",
@@ -32,6 +34,8 @@ const projects = [
     statusClass: "status-dev",
     url: "#",
     external: false,
+    i18nDesc: "project-allianz-desc",
+    i18nStatus: "status-dev",
   },
   {
     title: "R2R Consulting",
@@ -40,6 +44,8 @@ const projects = [
     statusClass: "status-deployed",
     url: "https://r2r.es/",
     external: true,
+    i18nDesc: "project-r2r-desc",
+    i18nStatus: "status-online",
   },
 ];
 
@@ -79,7 +85,7 @@ const faviconSafe =
 >
   <header>
     <nav>
-      <a href="#inicio" class="logo">japozo<span>.dev</span></a>
+      <a href="#inicio" class="logo">japonzo<span>.dev</span></a>
 
       <button class="mobile-toggle" aria-label="Abrir menú">
         <span class="bar"></span>
@@ -88,24 +94,29 @@ const faviconSafe =
       </button>
 
       <div class="nav-links">
-        <a href="#proyectos">Proyectos</a>
-        <a href="#user-profile">Perfil</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#proyectos" data-i18n="nav-projects">Proyectos</a>
+        <a href="#user-profile" data-i18n="nav-profile">Perfil</a>
+        <a href="#contacto" data-i18n="nav-contact">Contacto</a>
+        <button
+          id="lang-toggle"
+          class="lang-toggle"
+          aria-label="Switch language">EN</button
+        >
         <a href="/" class="switch-mode">&gt;_ TERMINAL_MODE</a>
       </div>
     </nav>
   </header>
 
   <section id="inicio">
-    <div class="section-intro">Frontend Developer</div>
-    <h1>Hola, soy <span>Pozo</span></h1>
-    <p class="subtitle">
+    <div class="section-intro" data-i18n="intro-label">Frontend Developer</div>
+    <h1><span data-i18n="intro-heading">Hola, soy </span><span>Pozo</span></h1>
+    <p class="subtitle" data-i18n="intro-sub">
       Desarrollo experiencias web que combinan innovación, funcionalidad y buen
       diseño.<br />
       Traduzco ideas en código claro, mantenible y orientado a resultados.
     </p>
 
-    <h2>Tecnologías Principales</h2>
+    <h2 data-i18n="tech-heading">Tecnologías Principales</h2>
     <div class="tech-grid">
       {
         technologies.map((tech) => (
@@ -117,22 +128,18 @@ const faviconSafe =
       }
     </div>
 
-    <a href="#proyectos" class="btn">Ver Proyectos</a>
+    <a href="#proyectos" class="btn" data-i18n="btn-projects">Ver Proyectos</a>
   </section>
 
-<section id="proyectos">
-  <h2>Proyectos Destacados</h2>
-  <div class="grid">
-
-    {projects.map((project) => (
-       <VisualCard project={project} />
-    ))}
-
-  </div>
-</section>
+  <section id="proyectos">
+    <h2 data-i18n="projects-heading">Proyectos Destacados</h2>
+    <div class="grid">
+      {projects.map((project) => <VisualCard project={project} />)}
+    </div>
+  </section>
 
   <section id="user-profile">
-    <h2>Sobre Mí</h2>
+    <h2 data-i18n="profile-heading">Sobre Mí</h2>
 
     <div class="profile-container">
       <div class="profile-sidebar">
@@ -150,16 +157,25 @@ const faviconSafe =
         </div>
 
         <div style="margin-top: 1rem;">
-          <p><span class="label">Ubicación:</span> Gijón, España</p>
-          <p><span class="label">Rol:</span> Web Developer</p>
-          <p><span class="label">Nivel:</span> Junior</p>
+          <p>
+            <span class="label" data-i18n="label-location">Ubicación:</span>
+            <span data-i18n="value-location">Gijón, España</span>
+          </p>
+          <p>
+            <span class="label" data-i18n="label-role">Rol:</span>
+            <span data-i18n="value-role">Web Developer</span>
+          </p>
+          <p>
+            <span class="label" data-i18n="label-status">Estado:</span>
+            <span data-i18n="value-status">Desarrollando en @Kewo</span>
+          </p>
         </div>
       </div>
 
       <div class="profile-info">
         <div class="bio-box">
-          <h3>Biografía Profesional</h3>
-          <p class="bio-text">
+          <h3 data-i18n="bio-heading">Biografía Profesional</h3>
+          <p class="bio-text" data-i18n="bio-text">
             Apasionado por la tecnología desde niño, he pasado más de 20 años
             trabajando con hardware. Tras ese recorrido decidí dar un giro
             profesional para centrarme en lo que realmente me motiva: el
@@ -170,7 +186,7 @@ const faviconSafe =
         </div><br />
 
         <div class="skills-box">
-          <h3>Habilidades Técnicas</h3>
+          <h3 data-i18n="skills-heading">Habilidades Técnicas</h3>
           {
             skills.map((skill) => (
               <div class="skill-row">
@@ -184,7 +200,7 @@ const faviconSafe =
                   <div
                     class="progress-fill progress-initial"
                     data-width={skill.pct}
-                  ></div>
+                  />
                 </div>
               </div>
             ))
@@ -195,21 +211,21 @@ const faviconSafe =
   </section>
 
   <section id="contacto">
-    <h2>Contacto</h2>
+    <h2 data-i18n="contact-heading">Contacto</h2>
     <p class="contact-intro"></p>
 
     <div class="network-panel">
       <div class="data-row">
-        <span class="label">Email:</span>
+        <span class="label" data-i18n="label-email">Email:</span>
         <a href={`mailto:${SITE_DATA.email}`} class="value-link"
           >{SITE_DATA.email}</a
         >
       </div>
       <div class="data-row">
-        <span class="label">Redes Sociales:</span>
+        <span class="label" data-i18n="label-social">Redes Sociales:</span>
         <div class="social-links">
           <a href={SOCIAL_LINKS.github} target="_blank">GitHub</a>
-            <a href={SOCIAL_LINKS.linkedin} target="_blank">LinkedIn</a>
+          <a href={SOCIAL_LINKS.linkedin} target="_blank">LinkedIn</a>
         </div>
       </div>
     </div>
@@ -218,6 +234,7 @@ const faviconSafe =
       <button
         onclick={`navigator.clipboard.writeText('${SITE_DATA.email}'); alert('Email copiado');`}
         class="btn copy-email-btn"
+        data-i18n="btn-copy-email"
       >
         Copiar Email al Portapapeles
       </button>
@@ -227,4 +244,7 @@ const faviconSafe =
   <footer>
     <p>&copy; <span id="year">{year}</span> J. A. Pozo</p>
   </footer>
+
+  <!-- i18n debe cargarse antes que safeMode.js -->
+  <script src="/Assets/js/i18n.js" is:inline></script>
 </BaseLayout>

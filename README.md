@@ -23,6 +23,7 @@ Interfaz gráfica moderna para facilitar la legibilidad.
 - Diseño limpio y responsive.
 - Grid de tecnologías visual.
 - Modo claro (Light Mode) con paleta corporativa.
+- **Selector de idioma ES / EN** — cambia todo el contenido de la página entre español e inglés sin recarga, con persistencia via `localStorage`.
 
 ---
 
@@ -38,6 +39,7 @@ El código ha sido refactorizado siguiendo principios **DRY (Don't Repeat Yourse
 | **Global Config** | Archivo `src/config.js` como **Single Source of Truth** para datos del sitio, email y redes sociales. |
 | **UI Abstraction** | Uso de componentes específicos (`TerminalCard`, `VisualCard`) para encapsular la lógica visual de los proyectos. |
 | **Smart Components** | Iconos SVG (`.astro`) que adaptan su color y relleno automáticamente según el contexto. |
+| **i18n (ES/EN)** | Sistema de internacionalización client-side en Safe Mode. Traducciones centralizadas en `i18n.js`, aplicadas via atributos `data-i18n` y `localStorage` para persistencia. |
 
 ---
 
@@ -49,6 +51,10 @@ Organización actual tras la refactorización:
 /
 ├── public/              # Assets estáticos
 │   ├── Assets/          # CSS, JS, Imágenes
+│   │   └── js/
+│   │       ├── i18n.js        # Traducciones ES/EN (Single Source of Truth)
+│   │       ├── safeMode.js    # Lógica Safe Mode (menú, animaciones, i18n toggle)
+│   │       └── script.js      # Lógica Terminal Mode
 │   └── robots.txt       # Reglas de indexación para buscadores
 ├── src/
 │   ├── config.js        # Configuración Global (Datos, RRSS)
@@ -63,6 +69,5 @@ Organización actual tras la refactorización:
 │   │
 │   └── pages/           # Vistas (Clean Code)
 │       ├── index.astro        # Terminal Mode (Lógica pura + Componentes)
-│       └── safeMode.astro     # Visual Mode (Lógica pura + Componentes)
+│       └── safeMode.astro     # Visual Mode ES/EN (Lógica pura + Componentes)
 └── astro.config.mjs     # Configuración del compilador (Sitemap integrations)
-
