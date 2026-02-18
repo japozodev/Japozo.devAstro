@@ -23,13 +23,11 @@ Interfaz gráfica moderna para facilitar la legibilidad.
 - Diseño limpio y responsive.
 - Grid de tecnologías visual.
 - Modo claro (Light Mode) con paleta corporativa.
-- **Selector de idioma ES / EN** — cambia todo el contenido de la página entre español e inglés sin recarga, con persistencia via `localStorage`.
+- **Selector de idioma ES / EN** — cambia todo el contenido de la página entre español e inglés sin recarga.
 
 ---
 
 ## 🛠️ Stack y Arquitectura
-
-El código ha sido refactorizado siguiendo principios **DRY (Don't Repeat Yourself)** y **Clean Code**.
 
 | Tecnología | Implementación |
 |------------|----------------|
@@ -45,29 +43,27 @@ El código ha sido refactorizado siguiendo principios **DRY (Don't Repeat Yourse
 
 ## 📂 Estructura del Proyecto
 
-Organización actual tras la refactorización:
-
 ```text
 /
 ├── public/              # Assets estáticos
 │   ├── Assets/          # CSS, JS, Imágenes
 │   │   └── js/
-│   │       ├── i18n.js        # Traducciones ES/EN (Single Source of Truth)
-│   │       ├── safeMode.js    # Lógica Safe Mode (menú, animaciones, i18n toggle)
+│   │       ├── i18n.js        # Traducciones ES/EN
+│   │       ├── safeMode.js    # Lógica Safe Mode 
 │   │       └── script.js      # Lógica Terminal Mode
 │   └── robots.txt       # Reglas de indexación para buscadores
 ├── src/
-│   ├── config.js        # Configuración Global (Datos, RRSS)
+│   ├── config.js        # Configuración Global 
 │   ├── components/      # Piezas reutilizables
 │   │   ├── AsciiArt.astro     # Arte ASCII encapsulado
-│   │   ├── TerminalCard.astro # Tarjeta de proyecto (Estilo Matrix)
-│   │   ├── VisualCard.astro   # Tarjeta de proyecto (Estilo Clean)
+│   │   ├── TerminalCard.astro # Tarjeta de proyecto Modo Terminal
+│   │   ├── VisualCard.astro   # Tarjeta de proyecto Modo Visual
 │   │   └── icons/             # Colección de SVGs dinámicos
 │   │
 │   ├── layouts/         # PLANTILLAS MAESTRAS
 │   │   └── BaseLayout.astro   # Controla SEO, Metas y Estructura base
 │   │
-│   └── pages/           # Vistas (Clean Code)
-│       ├── index.astro        # Terminal Mode (Lógica pura + Componentes)
-│       └── safeMode.astro     # Visual Mode ES/EN (Lógica pura + Componentes)
-└── astro.config.mjs     # Configuración del compilador (Sitemap integrations)
+│   └── pages/           # Vistas 
+│       ├── index.astro        # Terminal Mode 
+│       └── safeMode.astro     # Visual Mode ES/EN 
+└── astro.config.mjs     # Configuración del compilador 
