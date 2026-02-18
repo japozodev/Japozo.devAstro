@@ -43,3 +43,37 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.progress-fill').forEach(bar => {
   observer.observe(bar);
 });
+
+// --- CAMBIO DE IDIOMA ---
+const langToggleBtn = document.getElementById('lang-toggle');
+const STORAGE_KEY = 'safeMode-lang';
+
+// Aplicar todas las traducciones al DOM según el idioma activo
+function applyLanguage(lang) {
+  const strings = TRANSLATIONS[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (strings[key] !== undefined) {
+      const value = strings[key];
+      if (value.includes('\n')) {
+        el.innerHTML = value.replace(/\n/g, '<br>');
+      } else {
+        el.textContent = value;
+      }
+    }
+  });
+  langToggleBtn.textContent = lang === 'es' ? 'EN' : 'ES';
+  langToggleBtn.setAttribute('aria-label', lang === 'es' ? 'Switch to English' : 'Cambiar a Español');
+}
+
+// Inicializar con el idioma guardado (por defecto español)
+const savedLang = localStorage.getItem(STORAGE_KEY) || 'es';
+applyLanguage(savedLang);
+
+// Alternar idioma al hacer click
+langToggleBtn.addEventListener('click', () => {
+  const currentLang = localStorage.getItem(STORAGE_KEY) || 'es';
+  const nextLang = currentLang === 'es' ? 'en' : 'es';
+  localStorage.setItem(STORAGE_KEY, nextLang);
+  applyLanguage(nextLang);
+});
