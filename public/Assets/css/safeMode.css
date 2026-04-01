@@ -264,7 +264,7 @@ h2::after {
 ========================================= */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
@@ -526,6 +526,10 @@ footer {
        11. DISEÑO RESPONSIVO (Móvil)
 ========================================= */
 @media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
   .mobile-toggle {
     display: block !important;
   }
