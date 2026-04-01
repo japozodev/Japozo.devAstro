@@ -23,10 +23,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const ageEl = document.getElementById('user-age');
   if (ageEl) ageEl.textContent = age;
 
+  // --- DECODIFICAR EMAIL (ofuscado en base64 contra scraping) ---
+  const email = atob('Y29udGFjdEBqYXBvem8uZGV2');
+  const emailLink = document.getElementById('email-link');
+  if (emailLink) {
+    emailLink.href = 'mailto:' + email;
+    emailLink.textContent = email;
+  }
+
   // --- FUNCIONALIDAD BOTÓN COPIAR  ---
   if (copyBtn) {
     copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText('contact@japozo.dev')
+      navigator.clipboard.writeText(email)
         .then(() => alert('Dirección copiada al portapapeles'));
     });
   }

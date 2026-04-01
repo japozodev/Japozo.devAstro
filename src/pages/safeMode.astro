@@ -85,7 +85,7 @@ const faviconSafe =
 >
   <header>
     <nav>
-      <a href="#inicio" class="logo">japonzo<span>.dev</span></a>
+      <a href="#inicio" class="logo">japozo<span>.dev</span></a>
 
       <button class="mobile-toggle" aria-label="Abrir menú">
         <span class="bar"></span>
@@ -217,9 +217,7 @@ const faviconSafe =
     <div class="network-panel">
       <div class="data-row">
         <span class="label" data-i18n="label-email">Email:</span>
-        <a href={`mailto:${SITE_DATA.email}`} class="value-link"
-          >{SITE_DATA.email}</a
-        >
+        <a id="email-link" href="#" class="value-link">[...]</a>
       </div>
       <div class="data-row">
         <span class="label" data-i18n="label-social">Redes Sociales:</span>
@@ -232,7 +230,7 @@ const faviconSafe =
 
     <div class="contact-section">
       <button
-        onclick={`navigator.clipboard.writeText('${SITE_DATA.email}'); alert('Email copiado');`}
+        id="copy-btn"
         class="btn copy-email-btn"
         data-i18n="btn-copy-email"
       >

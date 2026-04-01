@@ -190,7 +190,7 @@ const faviconTerminal = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/s
       </div>
       <div class="data-row">
         <span class="label">ADDRESS:</span>
-        <a href={`mailto:${SITE_DATA.email}`} class="value-link">{SITE_DATA.email}</a>
+        <a id="email-link" href="#" class="value-link">[...]</a>
       </div>
       <div class="data-row">
         <span class="label">LOCATION:</span>
@@ -207,10 +207,9 @@ const faviconTerminal = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/s
 
     <div style="margin-top: 2rem;">
       <p>&gt;_ Execute copy command:</p>
-      <button 
-        id="copy-btn" 
+      <button
+        id="copy-btn"
         class="btn"
-        onclick={`navigator.clipboard.writeText('${SITE_DATA.email}'); alert('Dirección copiada al portapapeles');`}
       >
         $ cp email_address /clipboard
       </button>
