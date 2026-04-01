@@ -8,10 +8,16 @@ const { project } = Astro.props;
   target={project.external ? "_blank" : "_self"}
   rel={project.external ? "noopener noreferrer" : ""}
 >
-  <h3>{project.title}</h3>
-  <p data-i18n={project.i18nDesc}>{project.desc}</p>
-  
-  <span class={`status-tag ${project.statusClass}`} data-i18n={project.i18nStatus}>
-    {project.statusText}
-  </span>
+  {project.thumb && (
+    <div class="card-thumb">
+      <img src={project.thumb} alt={project.title} loading="lazy" />
+    </div>
+  )}
+  <div class="card-body">
+    <h3>{project.title}</h3>
+    <p data-i18n={project.i18nDesc}>{project.desc}</p>
+    <span class={`status-tag ${project.statusClass}`} data-i18n={project.i18nStatus}>
+      {project.statusText}
+    </span>
+  </div>
 </a>

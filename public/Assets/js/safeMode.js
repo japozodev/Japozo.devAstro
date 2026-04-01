@@ -36,28 +36,60 @@ menuLinks.forEach(link => {
   });
 });
 
-// --- ANIMACIÓN DE BARRAS DE PROGRESO ---
-// Configuración del Intersection Observer
-const observerOptions = {
-  threshold: 0.2
-};
-
-// Animar barras de progreso cuando se hacen visibles en pantalla
-const observer = new IntersectionObserver((entries) => {
+// --- SCROLL-TRIGGERED SECTION REVEALS ---
+const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      const bar = entry.target;
-      const targetWidth = bar.getAttribute('data-width');
-      bar.style.width = targetWidth;
-      observer.unobserve(bar);
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target);
     }
   });
-}, observerOptions);
+}, { threshold: 0.1 });
 
-// Observar todos los elementos con clase progress-fill
-document.querySelectorAll('.progress-fill').forEach(bar => {
-  observer.observe(bar);
+document.querySelectorAll('.section-reveal').forEach(section => {
+  revealObserver.observe(section);
 });
+
+// --- SKILL TAGS: ENTRADA ESCALONADA ---
+const skillsBox = document.querySelector('.skills-box');
+if (skillsBox) {
+  const tagsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-tag').forEach((tag, i) => {
+          tag.style.animationDelay = `${i * 0.07}s`;
+          tag.classList.add('tag-visible');
+        });
+        tagsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  tagsObserver.observe(skillsBox);
+
+  // --- SKILL TAGS: BRILLO EN CADENA ---
+  skillsBox.addEventListener('mouseover', (e) => {
+    const tag = e.target.closest('.skill-tag');
+    if (!tag) return;
+    const allTags = [...skillsBox.querySelectorAll('.skill-tag')];
+    const idx = allTags.indexOf(tag);
+    allTags.forEach((t, i) => {
+      const dist = Math.abs(i - idx);
+      if (dist > 0 && dist <= 3) {
+        t.style.transitionDelay = `${dist * 0.06}s`;
+        t.classList.add('tag-glow');
+      }
+    });
+  });
+
+  skillsBox.addEventListener('mouseout', (e) => {
+    const tag = e.target.closest('.skill-tag');
+    if (!tag) return;
+    skillsBox.querySelectorAll('.skill-tag').forEach(t => {
+      t.style.transitionDelay = '0s';
+      t.classList.remove('tag-glow');
+    });
+  });
+}
 
 // --- CAMBIO DE IDIOMA ---
 const langToggleBtn = document.getElementById('lang-toggle');
