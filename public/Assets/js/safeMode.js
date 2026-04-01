@@ -1,6 +1,21 @@
 // --- ACTUALIZAR AÑO EN FOOTER ---
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// --- DECODIFICAR EMAIL (ofuscado en base64 contra scraping) ---
+const email = atob('Y29udGFjdEBqYXBvem8uZGV2');
+const emailLink = document.getElementById('email-link');
+if (emailLink) {
+  emailLink.href = 'mailto:' + email;
+  emailLink.textContent = email;
+}
+const copyBtn = document.getElementById('copy-btn');
+if (copyBtn) {
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(email)
+      .then(() => alert('Email copiado'));
+  });
+}
+
 // --- REFERENCIAS DOM ---
 const mobileBtn = document.querySelector('.mobile-toggle');
 const navLinks = document.querySelector('.nav-links');
