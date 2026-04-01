@@ -23,7 +23,7 @@ const TRANSLATIONS = {
     "project-iptopo-desc": "Desarrollo de sitio web corporativo para empresa de topografía.",
     "project-allianz-desc": "Sitio web corporativo para partner de compañía internacional de seguros y activos financieros.",
     "project-r2r-desc": "Desarrollo web para consultoría especializada en servicios inmobiliarios.",
-
+    "project-tresoscos-desc": "Presentación de producto para empresa.",
 
     // --- SECCIÓN PERFIL ---
     "profile-heading": "Sobre Mí",
@@ -64,7 +64,7 @@ const TRANSLATIONS = {
     "project-iptopo-desc": "Corporate website development for a topography company.",
     "project-allianz-desc": "Corporate website for a partner of an international insurance and financial assets company.",
     "project-r2r-desc": "Web development for a consultancy specialised in real estate services.",
-
+    "project-tresoscos-desc": "Product showcase for business.",
 
     // --- SECCIÓN PERFIL ---
     "profile-heading": "About Me",

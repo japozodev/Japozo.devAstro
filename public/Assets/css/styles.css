@@ -413,7 +413,7 @@ p {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   width: 100%;
 }
@@ -903,6 +903,10 @@ p {
 
 /* Menú Móvil y ajustes Tablet (Max 768px) */
 @media (max-width: 768px) {
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
 
   header nav .logo {
     font-size: 0.9rem;
