@@ -35,7 +35,7 @@ La experiencia por defecto. Una inmersion en la estetica hacker de los 90s.
 
 ### Safe Mode (Visual UI)
 
-Interfaz grafica moderna pensada para facilitar la legibilidad y causar buena impresion.
+Interfaz grafica moderna pensada para facilitar la legibilidad y experiencia de usuario.
 
 - **Glassmorphism**: hero con blobs flotantes animados y contenedor glass con `backdrop-filter`.
 - **Tech Grid** con hover por colores de marca (HTML rojo, CSS azul, JS amarillo...).
@@ -100,6 +100,5 @@ Interfaz grafica moderna pensada para facilitar la legibilidad y causar buena im
 
 **J. A. Pozo** — Frontend Developer desde Gijon, Espana.
 
-- [GitHub](https://github.com/japozodev)
 - [LinkedIn](https://www.linkedin.com/in/joseantoniopozogonzalez/)
-- Web: [japozo.dev](https://japozo.dev)
+- [japozo.dev](https://japozo.dev)
