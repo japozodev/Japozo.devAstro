@@ -26,6 +26,7 @@ const projects = [
     external: true,
     i18nDesc: "project-iptopo-desc",
     i18nStatus: "status-online",
+    thumb: "/Assets/img/projects/iptopografia.png",
   },
   {
     title: "Allianz Partner",
@@ -36,6 +37,7 @@ const projects = [
     external: true,
     i18nDesc: "project-allianz-desc",
     i18nStatus: "status-online",
+    thumb: "/Assets/img/projects/allianz.png",
   },
   {
     title: "R2R Consulting",
@@ -46,6 +48,7 @@ const projects = [
     external: true,
     i18nDesc: "project-r2r-desc",
     i18nStatus: "status-online",
+    thumb: "/Assets/img/projects/r2r.png",
   },
   {
     title: "Tres Oscos",
@@ -56,15 +59,8 @@ const projects = [
     external: true,
     i18nDesc: "project-tresoscos-desc",
     i18nStatus: "status-online",
+    thumb: "/Assets/img/projects/tresoscos.png",
   },
-];
-
-const skills = [
-  { name: "HTML / CSS", pct: "95%" },
-  { name: "JavaScript", pct: "85%" },
-  { name: "UI / UX Design", pct: "80%" },
-  { name: "Teamwork", pct: "75%" },
-  { name: "Problem Solving", pct: "85%" },
 ];
 
 const technologies = [
@@ -97,58 +93,70 @@ const faviconSafe =
     <nav>
       <a href="#inicio" class="logo">japozo<span>.dev</span></a>
 
-      <button class="mobile-toggle" aria-label="Abrir menú">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-
-      <div class="nav-links">
-        <a href="#proyectos" data-i18n="nav-projects">Proyectos</a>
-        <a href="#user-profile" data-i18n="nav-profile">Perfil</a>
-        <a href="#contacto" data-i18n="nav-contact">Contacto</a>
+      <div class="nav-right">
         <button
           id="lang-toggle"
           class="lang-toggle"
           aria-label="Switch language">EN</button
         >
+        <button class="mobile-toggle" aria-label="Abrir menú">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+
+      <div class="nav-links">
+        <a href="#proyectos" data-i18n="nav-projects">Proyectos</a>
+        <a href="#user-profile" data-i18n="nav-profile">Perfil</a>
+        <a href="#contacto" data-i18n="nav-contact">Contacto</a>
         <a href="/" class="switch-mode">&gt;_ TERMINAL_MODE</a>
       </div>
     </nav>
   </header>
 
   <section id="inicio">
-    <div class="section-intro" data-i18n="intro-label">Frontend Developer</div>
-    <h1><span data-i18n="intro-heading">Hola, soy </span><span>Pozo</span></h1>
-    <p class="subtitle" data-i18n="intro-sub">
-      Desarrollo experiencias web que combinan innovación, funcionalidad y buen
-      diseño.<br />
-      Traduzco ideas en código claro, mantenible y orientado a resultados.
-    </p>
-
-    <h2 data-i18n="tech-heading">Tecnologías Principales</h2>
-    <div class="tech-grid">
-      {
-        technologies.map((tech) => (
-          <div class={`tech-item ${tech.mobileOnly ? "mobile-only" : ""}`}>
-            <tech.Icon class="tech-icon" innerFill={tech.innerFill} />
-            <span>{tech.name}</span>
-          </div>
-        ))
-      }
+    <div class="hero-bg">
+      <div class="hero-blob hero-blob--1"></div>
+      <div class="hero-blob hero-blob--2"></div>
+      <div class="hero-blob hero-blob--3"></div>
     </div>
+    <div class="hero-glass">
+      <div class="section-intro hero-anim" data-i18n="intro-label">Frontend Developer</div>
+      <h1 class="hero-anim"><span data-i18n="intro-heading">Hola, soy </span><span>Pozo</span></h1>
+      <p class="subtitle hero-anim" data-i18n="intro-sub">
+        Desarrollo experiencias web que combinan innovación, funcionalidad y buen
+        diseño.<br />
+        Traduzco ideas en código claro, mantenible y orientado a resultados.
+      </p>
 
-    <a href="#proyectos" class="btn" data-i18n="btn-projects">Ver Proyectos</a>
+      <h2 class="hero-anim" data-i18n="tech-heading">Tecnologías Principales</h2>
+      <div class="tech-grid hero-anim">
+        {
+          technologies.map((tech) => (
+            <div
+              class={`tech-item ${tech.mobileOnly ? "mobile-only" : ""}`}
+              data-tech={tech.name.toLowerCase()}
+            >
+              <tech.Icon class="tech-icon" innerFill={tech.innerFill} />
+              <span>{tech.name}</span>
+            </div>
+          ))
+        }
+      </div>
+
+      <a href="#proyectos" class="btn btn-glow hero-anim" data-i18n="btn-projects">Ver Proyectos</a>
+    </div>
   </section>
 
-  <section id="proyectos">
+  <section id="proyectos" class="section-reveal">
     <h2 data-i18n="projects-heading">Proyectos Destacados</h2>
     <div class="grid">
       {projects.map((project) => <VisualCard project={project} />)}
     </div>
   </section>
 
-  <section id="user-profile">
+  <section id="user-profile" class="section-reveal">
     <h2 data-i18n="profile-heading">Sobre Mí</h2>
 
     <div class="profile-container">
@@ -197,30 +205,33 @@ const faviconSafe =
 
         <div class="skills-box">
           <h3 data-i18n="skills-heading">Habilidades Técnicas</h3>
-          {
-            skills.map((skill) => (
-              <div class="skill-row">
-                <div class="skill-info">
-                  <>
-                    <span>{skill.name}</span>
-                    <span>{skill.pct}</span>
-                  </>
-                </div>
-                <div class="progress-bg">
-                  <div
-                    class="progress-fill progress-initial"
-                    data-width={skill.pct}
-                  />
-                </div>
-              </div>
-            ))
-          }
+
+          <h4 class="skills-category" data-i18n="skills-frontend">Frontend</h4>
+          <div class="skills-tags">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Astro</span>
+            <span class="skill-tag">Bootstrap</span>
+          </div>
+
+          <h4 class="skills-category" data-i18n="skills-cms">CMS</h4>
+          <div class="skills-tags">
+            <span class="skill-tag">WordPress</span>
+            <span class="skill-tag">Elementor</span>
+          </div>
+
+          <h4 class="skills-category" data-i18n="skills-tools">Herramientas</h4>
+          <div class="skills-tags">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contacto">
+  <section id="contacto" class="section-reveal">
     <h2 data-i18n="contact-heading">Contacto</h2>
     <p class="contact-intro"></p>
 

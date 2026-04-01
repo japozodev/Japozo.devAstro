@@ -36,6 +36,9 @@ const TRANSLATIONS = {
     "bio-heading": "Biografía Profesional",
     "bio-text": "Apasionado por la tecnología desde niño, he pasado más de 20 años trabajando con hardware. Tras ese recorrido decidí dar un giro profesional para centrarme en lo que realmente me motiva: el desarrollo web y de software. Hoy diseño y construyo soluciones digitales con identidad propia, cuidando tanto la eficiencia del código como la experiencia final.",
     "skills-heading": "Habilidades Técnicas",
+    "skills-frontend": "Frontend",
+    "skills-cms": "CMS",
+    "skills-tools": "Herramientas",
 
     // --- SECCIÓN CONTACTO ---
     "contact-heading": "Contacto",
@@ -77,6 +80,9 @@ const TRANSLATIONS = {
     "bio-heading": "Professional Bio",
     "bio-text": "Passionate about technology since childhood, I spent over 20 years working with hardware. After that journey I decided to make a professional shift to focus on what truly motivates me: web and software development. Today I design and build digital solutions with their own identity, caring as much about code efficiency as the final user experience.",
     "skills-heading": "Technical Skills",
+    "skills-frontend": "Frontend",
+    "skills-cms": "CMS",
+    "skills-tools": "Tools",
 
     // --- SECCIÓN CONTACTO ---
     "contact-heading": "Contact",
