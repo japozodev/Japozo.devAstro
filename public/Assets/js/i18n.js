@@ -43,6 +43,7 @@ const TRANSLATIONS = {
     // --- SECCIÓN CONTACTO ---
     "contact-heading": "Contacto",
     "label-email": "Email:",
+    "label-email-reveal": "[ Haz click para revelar ]",
     "label-social": "Redes Sociales:",
     "btn-copy-email": "Copiar Email al Portapapeles",
   },
@@ -87,6 +88,7 @@ const TRANSLATIONS = {
     // --- SECCIÓN CONTACTO ---
     "contact-heading": "Contact",
     "label-email": "Email:",
+    "label-email-reveal": "[ Click to reveal ]",
     "label-social": "Social Networks:",
     "btn-copy-email": "Copy Email to Clipboard",
   },
