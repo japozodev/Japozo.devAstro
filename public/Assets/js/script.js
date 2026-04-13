@@ -23,18 +23,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const ageEl = document.getElementById('user-age');
   if (ageEl) ageEl.textContent = age;
 
-  // --- DECODIFICAR EMAIL (ofuscado en base64 contra scraping) ---
-  const email = atob('Y29udGFjdEBqYXBvem8uZGV2');
+  // --- EMAIL CLICK-TO-REVEAL (gate humano contra scraping) ---
   const emailLink = document.getElementById('email-link');
+  const revealEmail = () => {
+    if (!emailLink) return '';
+    if (emailLink.dataset.revealed === 'true') return emailLink.textContent;
+    const decoded = atob(emailLink.dataset.emailB64 || '');
+    emailLink.href = 'mailto:' + decoded;
+    emailLink.textContent = decoded;
+    emailLink.dataset.revealed = 'true';
+    return decoded;
+  };
   if (emailLink) {
-    emailLink.href = 'mailto:' + email;
-    emailLink.textContent = email;
+    emailLink.addEventListener('click', (e) => {
+      if (emailLink.dataset.revealed !== 'true') {
+        e.preventDefault();
+        revealEmail();
+      }
+    });
   }
-
-  // --- FUNCIONALIDAD BOTÓN COPIAR  ---
   if (copyBtn) {
     copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(email)
+      const decoded = revealEmail();
+      if (!decoded) return;
+      navigator.clipboard.writeText(decoded)
         .then(() => alert('Dirección copiada al portapapeles'));
     });
   }

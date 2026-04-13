@@ -55,7 +55,7 @@ Interfaz grafica moderna pensada para facilitar la legibilidad y experiencia de 
 | **JS Vanilla** | IntersectionObserver para scroll reveals, i18n client-side, logica de modos |
 | **SEO** | `sitemap.xml` automatico, `robots.txt`, OG tags, Twitter cards, canonical URLs |
 | **i18n (ES/EN)** | Traducciones centralizadas en `i18n.js`, atributos `data-i18n`, persistencia `localStorage` |
-| **Anti-spam** | Email ofuscado en Base64, decodificado client-side con `atob()` |
+| **Anti-spam** | Email en Base64 + gate click-to-reveal: nunca aparece en el DOM hasta que un humano hace click |
 | **Config Global** | `src/config.js` como Single Source of Truth para datos del sitio y redes sociales |
 | **Componentes** | Tarjetas de proyecto por modo (`TerminalCard`, `VisualCard`), iconos SVG dinamicos con props |
 | **Layout Base** | `BaseLayout.astro` — gestion centralizada de SEO, `<head>`, favicon y scripts |
